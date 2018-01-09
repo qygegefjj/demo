@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+	">
+
+	<!-- 1、配置扫描包 -->
+	<context:component-scan base-package="com.yz.controller" />
+
+	<!-- 2、自动的注册DefaultAnnotationHandlerMapping映射处理器
+				和AnnotationMethodHandlerAdapator处理器适配器 -->
+	<mvc:annotation-driven/>
+	
+	<!-- 3、配置视图解析器ViewResolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+			<!-- prefix 配置前缀 -->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+			<!-- suffix 配置后缀 -->
+		<property name="suffix" value=".jsp" />
+		<!-- prefix+逻辑视图名+suffix 就是具体页面的名字 -->
+	</bean>
+	
+	<!-- 静态资源映射 -->
+	<mvc:default-servlet-handler/> 
+	<!-- <mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/images/" mapping="/images/**"/>
+	<mvc:resources location="/bootstrap/" mapping="/bootstrap/**"/>
+	<mvc:resources location="/My97DatePicker/" mapping="/My97DatePicker/**"/>
+	<mvc:resources location="/My97DatePicker/" mapping="/My97DatePicker/**"/> -->
+</beans>
